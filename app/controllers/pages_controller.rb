@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @jobs = Job.all
+    @jobs = Job.take(5)
   end
 end

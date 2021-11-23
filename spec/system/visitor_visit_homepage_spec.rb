@@ -6,7 +6,7 @@ describe 'Visitor visit homepage' do
   it 'and view welcome message' do
     visit root_path
 
-    expect(page).to have_css('h1', text:'Dragon Mantis')
+    expect(page).to have_content('Dragon Mantis')
   end
 
   it 'and view all active jobs' do
