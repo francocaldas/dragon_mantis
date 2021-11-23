@@ -23,4 +23,19 @@ describe 'Visitor visit homepage' do
     expect(page).to have_content('Dev júnior Ruby on Rails')
   end
 
+  it 'and register new user' do
+    #Arrange
+    #Act
+    visit root_path
+    click_on 'Registrar-se'
+    fill_in 'Email', with: 'teste@teste.com'
+    fill_in 'Password', with: '123456'
+    fill_in 'Password confirmation', with: '123456'
+    click_on 'Sign up'
+
+    #assert
+    expect(page).to have_content("Welcome! You have signed up successfully.")
+    #expect(page).to have_text "Welcome back"
+  end
+
 end
