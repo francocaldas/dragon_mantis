@@ -11,16 +11,28 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <%= link_to current_user.email, edit_user_registration_path, class: "nav-item nav-link" %>
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
+          <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
+        <% elsif headhunter_signed_in? %>
+          <%= link_to current_headhunter.email, edit_headhunter_registration_path, class: "nav-item nav-link" %>
+          <%= link_to "Sair", destroy_headhunter_session_path, method: :delete, class: "nav-item nav-link" %>
         <% else %>
           <span class="navbar-text border-md-right">
             Cadastre-se
           </span>
           
-          <%= link_to "Candidato", new_user_registration_path, class: "nav-item nav-link" %>
-          |
-          <%= link_to "Headhunter", new_headhunter_registration_path, class: "nav-item nav-link" %>
-          <%= link_to "Login", new_user_session_path, class: "nav-item nav-link" %>
+          <%= link_to "Candidato", new_user_registration_path, class: "nav-item nav-link", id: 'signup_candidate' %>
+          <%= link_to "Headhunter", new_headhunter_registration_path, class: "nav-item nav-link", id: 'signup_headhunter' %>
+          <div class="dropdown">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><%= link_to "Candidato", new_user_session_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Headhunter", new_headhunter_session_path, class: "dropdown-item", id: 'login_headhunter' %></li>
+              </ul>
+            </li>
+          </div>
 
         <% end %>        
       </ul>

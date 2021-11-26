@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative '../support/devise'
 
 describe 'Visitor visit homepage' do
   it 'and view welcome message' do
@@ -27,7 +28,7 @@ describe 'Visitor visit homepage' do
     # Arrange
     # Act
     visit root_path
-    click_on 'Candidato'
+    find(:css, '#signup_candidate').click
     fill_in 'Email', with: 'teste@teste.com'
     fill_in 'Password', with: '123456'
     fill_in 'Password confirmation', with: '123456'
@@ -41,8 +42,8 @@ describe 'Visitor visit homepage' do
     # Arrange
     # Act
     visit root_path
-    click_on 'Headhunter'
-    fill_in 'Email', with: 'teste@teste.com'
+    find(:css, '#signup_headhunter').click
+    fill_in 'Email', with: 'headhunter@teste.com'
     fill_in 'Password', with: '123456'
     fill_in 'Password confirmation', with: '123456'
     click_on 'Sign up'
@@ -51,16 +52,35 @@ describe 'Visitor visit homepage' do
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
-  it 'and the user logs in' do
+  it 'and headhunter logs into the application' do
     # Arrange
-
+    @headhunter = FactoryBot.create(:headhunter)
     # Act
-    #visit root_path
-    #click_on 'Login'
-    #fill_in 'Email', with: 'teste@teste.com'
-    #fill_in 'Password', with: '123456'
-    #click_on 'Login'
+    visit root_path
+    #login_headhunter
+    within('div.dropdown') do
+      click_on 'Headhunter'
+    end
+    fill_in 'Email', with: 'headhunter@teste.com'
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
     # Assert
-    #expect(page).to have_content('Singed in successfully.')
+    expect(page).to have_content('Sair')
+    expect(page).to have_content('headhunter@teste.com')
+  end
+
+  it 'and candidate logs into the application' do
+    # Arrange
+    @user = FactoryBot.create(:user)
+    # Act
+    visit root_path
+    within('div.dropdown') do
+      click_on 'Candidato'
+    end
+    fill_in 'Email', with: 'candidato@teste.com'
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
+    # Assert
+    expect(page).to have_content('Sair')
   end
 end
