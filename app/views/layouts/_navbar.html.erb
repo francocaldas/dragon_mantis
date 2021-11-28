@@ -4,9 +4,9 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          
-        </li>
+        <% if headhunter_signed_in? %>
+          <%= link_to 'Cadastrar Vaga', new_job_path, class: "nav-item nav-link" %>
+        <% end %>
       </ul>
       <ul class="navbar-nav">
         <% if user_signed_in? %>

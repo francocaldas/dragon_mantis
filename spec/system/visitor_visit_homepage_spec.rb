@@ -92,7 +92,6 @@ describe 'Visitor visit homepage' do
     @headhunter = FactoryBot.create(:headhunter)
     # Act
     visit root_path
-    #login_headhunter
     within('div.dropdown') do
       click_on 'Headhunter'
     end
@@ -103,5 +102,31 @@ describe 'Visitor visit homepage' do
     click_on 'Sair'   
     # Assert
     expect(page).to have_content('Cadastre-se')
+  end
+
+  it 'and headhunter register new job' do
+    # Arrange
+    @headhunter = FactoryBot.create(:headhunter)
+    visit root_path
+    within('div.dropdown') do
+      click_on 'Headhunter'
+    end
+    fill_in 'Email', with: 'headhunter@teste.com'
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
+    # Act
+    visit root_path
+    click_on 'Cadastrar Vaga'
+    fill_in 'Título', with: 'Dev sênior Ruby on Rails'
+    fill_in 'Descrição', with: 'Vaga para desenvolvedor sênior em ruby on rails CLT'
+    fill_in 'Habilidades Desejadas', with: 'CSS, JS, TDD, kanban' 
+    fill_in 'Faixa Salarial', with: 'R$ 8000 a R$ 12000' 
+    fill_in 'Nível', with: 'Sênior'
+    fill_in 'Data Limite', with: '20/11/2021' 
+    fill_in 'Localização', with: 'Remoto'
+    click_on 'Salvar'
+    # Assert
+    expect(current_path).to eq root_path
+    expect(page).to have_content('Dev sênior Ruby on Rails')
   end
 end
