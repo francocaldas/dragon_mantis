@@ -104,6 +104,23 @@ describe 'Visitor visit homepage' do
     expect(page).to have_content('Cadastre-se')
   end
 
+  it 'and candidate logs out of the application' do
+    # Arrange
+    @user = FactoryBot.create(:user)
+    # Act
+    visit root_path
+    within('div.dropdown') do
+      click_on 'Candidato'
+    end
+    fill_in 'Email', with: 'candidato@teste.com'
+    fill_in 'Password', with: '123456'
+    click_on 'Log in'
+    visit root_path
+    click_on 'Sair'   
+    # Assert
+    expect(page).to have_content('Cadastre-se')
+  end
+
   it 'and headhunter register new job' do
     # Arrange
     @headhunter = FactoryBot.create(:headhunter)
@@ -128,5 +145,28 @@ describe 'Visitor visit homepage' do
     # Assert
     expect(current_path).to eq root_path
     expect(page).to have_content('Dev sênior Ruby on Rails')
+  end
+
+  it 'candidate register your profile' do
+    # Arrange
+    @user = FactoryBot.create(:user)
+    visit root_path
+    within('div.dropdown') do
+      click_on 'Candidato'
+    end
+    fill_in 'Email', with: 'candidato@teste.com'
+    fill_in 'Password', with: '123456'
+    click_on 'Log in' 
+    # Act
+    visit root_path
+    click_on 'Perfil'
+    fill_in 'Nome Completo', with: 'Candidato de Teste'
+    fill_in 'Nome Social', with: 'Candidate'
+    fill_in 'Data de Nascimento', with: '01/01/1994' 
+    fill_in 'Formação', with: 'Superior incompleto'
+    fill_in 'Descrição', with: 'Descrição do candidato'
+    fill_in 'Experiência', with: 'Experiência profissional do candidato'
+    click_on 'Salvar'
+    # Assert
   end
 end

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   }
   root to: 'pages#home'
   resources :jobs, only: [:new, :create]
+  resources :profiles, only: [:new, :create]
 end

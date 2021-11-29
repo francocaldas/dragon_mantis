@@ -1,0 +1,30 @@
+<h1>Cadastrar Perfil</h1>
+
+<%= form_with(model: Profile.new) do |f| %>
+  <div>
+    <%= f.label :name, 'Nome Completo' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :social_name, 'Nome Social' %>
+    <%= f.text_field :social_name %>
+  </div>
+  <div>
+    <%= f.label :birth_date, 'Data de Nascimento' %>
+    <%= f.text_field :birth_date %>
+  </div>
+  <div>
+    <%= f.label :formation, 'Formação' %>
+    <%= f.text_field :formation %>
+  </div>
+  <div>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :experience, 'Experiência' %>
+    <%= f.text_area :experience %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>

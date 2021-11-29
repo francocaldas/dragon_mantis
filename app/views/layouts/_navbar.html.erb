@@ -7,7 +7,12 @@
         <% if headhunter_signed_in? %>
           <%= link_to 'Cadastrar Vaga', new_job_path, class: "nav-item nav-link" %>
         <% end %>
+        
+        <% if user_signed_in? %>
+          <%= link_to 'Perfil', new_profile_path,class: "nav-item nav-link" %>
+        <% end %>
       </ul>
+      
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <%= link_to current_user.email, edit_user_registration_path, class: "nav-item nav-link" %>
