@@ -1,8 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-
+  #before_action :check_profile_presence, only: [:new, :create]
+  
   def new
-    @profile = Profile.new
+    if current_user.profiles.empty?
+      @profile = Profile.new
+    else
+      # raise error which doesn't make sense or redirect like
+      redirect_to edit_profile_path(current_user.id)
+    end
   end
 
   def create
@@ -12,6 +18,20 @@ class ProfilesController < ApplicationController
       :new
       redirect_to root_path
     end
+  end
+
+  def update
+    @profile = current_user.profiles.find(params[:id])
+
+    if @profile.update(profile_params)
+      redirect_to root_path
+    else
+      render action: "edit"
+    end
+  end
+
+  def edit
+    @profile = current_user.profiles.find(params[:id])
   end
 
   private
