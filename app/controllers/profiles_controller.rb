@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   #before_action :check_profile_presence, only: [:new, :create]
+
   
   def new
     if current_user.profiles.empty?
@@ -32,6 +33,7 @@ class ProfilesController < ApplicationController
   def edit
     @profile = current_user.profiles.find(params[:id])
   end
+
 
   private
     def profile_params
