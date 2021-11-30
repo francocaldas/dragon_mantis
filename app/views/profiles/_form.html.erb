@@ -1,28 +1,35 @@
-<%= form_with(model: profile) do |f| %>
-  <div>
-    <%= f.label :name, 'Nome Completo' %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :social_name, 'Nome Social' %>
-    <%= f.text_field :social_name %>
-  </div>
-  <div>
-    <%= f.label :birth_date, 'Data de Nascimento' %>
-    <%= f.date_field :birth_date %>
-  </div>
-  <div>
-    <%= f.label :formation, 'Formação' %>
-    <%= f.text_field :formation %>
-  </div>
-  <div>
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_area :description %>
-  </div>
-  <div>
-    <%= f.label :experience, 'Experiência' %>
-    <%= f.text_area :experience %>
-  </div>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_with(model: profile) do |f| %>
+    <div class="card">
+      <div class="card-body">
+      
+        <div class="mb-3">
+          <%= f.label :name, 'Nome Completo', { class: "form-label"} %>
+          <%= f.text_field :name, { class: "form-control"} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :social_name, 'Nome Social', { class: "form-label"} %>
+          <%= f.text_field :social_name, { class: "form-control"} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :birth_date, 'Data de Nascimento', { class: "form-label"} %>
+          <%= f.date_field :birth_date, { class: "form-control"} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :formation, 'Formação', { class: "form-label"} %>
+          <%= f.text_field :formation, { class: "form-control"} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :description, 'Descrição', { class: "form-label"} %>
+          <%= f.text_area :description, { class: "form-control"} %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :experience, 'Experiência', { class: "form-label"} %>
+          <%= f.text_area :experience, { class: "form-control"} %>
+        </div>
 
-  <%= f.submit 'Salvar' %>
-<% end %>
+        <%= f.submit 'Salvar', class: "btn btn-default btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

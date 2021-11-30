@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
     if current_user.profiles.empty?
       @profile = Profile.new
     else
-      # raise error which doesn't make sense or redirect like
       redirect_to edit_profile_path(current_user.id)
     end
   end
