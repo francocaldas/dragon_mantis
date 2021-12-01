@@ -4,8 +4,8 @@ class ProfilesController < ApplicationController
 
   
   def new
-    if current_user.profiles.empty?
-      @profile = Profile.new
+    if Profile.where("user_id = ?", current_user.id).blank?
+      @profile = current_user.profiles.build
     else
       redirect_to edit_profile_path(current_user.id)
     end
@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
   def create
     @user = current_user
     @profile = @user.profiles.create(profile_params)
-    if  @profile.save
+    if @profile.save
       :new
       redirect_to root_path
     end
@@ -31,13 +31,13 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = current_user.profiles.find(params[:id])
+    @profile = current_user.profiles.find_by(user_id: current_user.id)
   end
 
 
   private
     def profile_params
-      params.require(:profile).permit(:name, :social_name, :birth_date, :formation, :description, :experience, :picture)
+      params.require(:profile).permit(:name, :social_name, :birth_date, :formation, :description, :experience, :picture, :user_id)
     end
   
 end
