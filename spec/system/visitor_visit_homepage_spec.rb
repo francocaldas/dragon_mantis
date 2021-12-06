@@ -55,82 +55,10 @@ describe 'Visitor visit homepage' do
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
-  it 'and headhunter logs into the application' do
-    # Arrange
-    @headhunter = FactoryBot.create(:headhunter)
-    # Act
-    visit root_path
-    #login_headhunter
-    within('div.dropdown') do
-      click_on 'Headhunter'
-    end
-    fill_in 'Email', with: 'headhunter@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    # Assert
-    expect(page).to have_content('Sair')
-    expect(page).to have_content('headhunter@teste.com')
-  end
-
-  it 'and candidate logs into the application' do
-    # Arrange
-    @user = FactoryBot.create(:user)
-    # Act
-    visit root_path
-    within('div.dropdown') do
-      click_on 'Candidato'
-    end
-    fill_in 'Email', with: 'candidato@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    # Assert
-    expect(page).to have_content('Sair')
-  end
-
-  it 'and headhunter logs out of the application' do
-    # Arrange
-    @headhunter = FactoryBot.create(:headhunter)
-    # Act
-    visit root_path
-    within('div.dropdown') do
-      click_on 'Headhunter'
-    end
-    fill_in 'Email', with: 'headhunter@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    visit root_path
-    click_on 'Sair'   
-    # Assert
-    expect(page).to have_content('Cadastre-se')
-  end
-
-  it 'and candidate logs out of the application' do
-    # Arrange
-    @user = FactoryBot.create(:user)
-    # Act
-    visit root_path
-    within('div.dropdown') do
-      click_on 'Candidato'
-    end
-    fill_in 'Email', with: 'candidato@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
-    visit root_path
-    click_on 'Sair'   
-    # Assert
-    expect(page).to have_content('Cadastre-se')
-  end
-
   it 'and headhunter register new job' do
     # Arrange
-    @headhunter = FactoryBot.create(:headhunter)
-    visit root_path
-    within('div.dropdown') do
-      click_on 'Headhunter'
-    end
-    fill_in 'Email', with: 'headhunter@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in'
+    headhunter = FactoryBot.create(:headhunter)
+    login_as(headhunter, :scope => :headhunter)
     # Act
     visit root_path
     click_on 'Cadastrar Vaga'
@@ -149,14 +77,8 @@ describe 'Visitor visit homepage' do
 
   it 'candidate register your profile' do
     # Arrange
-    @user = FactoryBot.create(:user)
-    visit root_path
-    within('div.dropdown') do
-      click_on 'Candidato'
-    end
-    fill_in 'Email', with: 'candidato@teste.com'
-    fill_in 'Password', with: '123456'
-    click_on 'Log in' 
+    user = FactoryBot.create(:user)
+    login_as(user, :scope => :user) 
     # Act
     visit root_path
     click_on 'Perfil'

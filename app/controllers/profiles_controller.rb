@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   
   def new
-    if Profile.where("user_id = ?", current_user.id).blank?
+    if Profile.where("user_id = ?", current_user.id).blank? 
       @profile = current_user.profiles.build
     else
       redirect_to edit_profile_path(current_user.id)

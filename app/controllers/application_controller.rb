@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
     def after_sign_in_path_for(resource)
       if user_signed_in?
-        if !current_user.profiles.exists?
+        if !current_user.profiles.exists? || current_user.profiles.incomplete
           new_profile_path
         else
           root_path
