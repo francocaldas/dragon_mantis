@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <p class="h2">Detalhes da Vaga</p>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= @jobs.title %>
+      </h4>
+      <br>
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Descrição da Vaga:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.description %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Habilidades Desejadas:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.skills %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Nível:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.level %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Faixa Salarial:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.salary_range %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Localização:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.location %>
+        </div>
+      </div>
+      <br>
+      
+      <%= link_to 'Increver-se', job_enroll_path(@jobs, user_id: current_user.id), method: :post, class: "btn btn-primary" %>
+      <%= link_to 'Voltar', root_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

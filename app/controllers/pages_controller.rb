@@ -6,6 +6,10 @@ class PagesController < ApplicationController
   #skip_before_action :authenticate_headhunter!, only: [:home]
 
   def home
-    @jobs = Job.take(5)
+    if headhunter_signed_in? 
+       redirect_to jobs_path
+    else
+      @jobs = Job.take(5)
+    end
   end
 end

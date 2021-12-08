@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     registrations: 'headhunters/registrations'
   }
   root to: 'pages#home'
-  resources :jobs, only: [:new, :create]
+  resources :jobs, only: [:new, :create, :index, :show, :edit] do
+    post :enroll
+    #resources :subscriptions
+  end
   resources :profiles, only: [:new, :create, :edit, :show, :update]
 end

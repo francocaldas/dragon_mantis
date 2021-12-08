@@ -14,7 +14,7 @@ describe 'Headhunter sign in' do
     fill_in 'Password', with: '123456'
     click_on 'Entrar'
     # Assert
-    expect(current_path).to eq root_path
+    expect(current_path).to eq jobs_path
     expect(page).to have_content('headhunter@teste.com')
     expect(page).to have_link('Sair')
     expect(page).not_to have_content('Login')
