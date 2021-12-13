@@ -39,9 +39,13 @@ class JobsController < ApplicationController
   end
   
   def enroll
-    @subscription = Subscription.new(job_id: params[:job_id], user_id: params[:user_id])
-    @subscription.save
-    flash[:notice] = "Inscrição realizada com sucesso."
+    if Subscription.exists?(job_id: params[:job_id], user_id: params[:user_id])
+      flash[:alert] = "Você já está inscrito para essa vaga."
+    else
+      @subscription = Subscription.new(job_id: params[:job_id], user_id: params[:user_id])
+      @subscription.save
+      flash[:notice] = "Inscrição realizada com sucesso."
+    end
     redirect_to root_path
   end
 
