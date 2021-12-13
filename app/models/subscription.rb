@@ -2,8 +2,8 @@ class Subscription < ApplicationRecord
   belongs_to :job
   belongs_to :user
 
-  def user_email
-    @user = User.find(user_id)
-    "#{@user.email}"
+  def profile_name
+    @profile = Profile.find_by(user_id: user_id)
+    "#{@profile.name}"
   end
 end

@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_headhunter!, only: [:show]
   #before_action :check_profile_presence, only: [:new, :create]
 
   
@@ -34,6 +35,10 @@ class ProfilesController < ApplicationController
     @profile = current_user.profiles.find_by(user_id: current_user.id)
   end
 
+  def show
+    @profile = Profile.find_by(user_id: params[:id])
+    @comment = @profile.comments.build
+  end
 
   private
     def profile_params

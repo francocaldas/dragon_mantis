@@ -1,0 +1,24 @@
+  <%= form_with(model: comment) do |f| %>
+   <% if comment.errors.any? %>
+    <div id="error_explanation">
+     <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved: 
+     </h2>
+
+     <ul>
+      <% comment.errors.each do |error| %>
+       <li><%= error.full_message %></li>
+      <% end %>
+     </ul>
+    </div>
+   <% end %>
+
+   <%= f.hidden_field :profile_id %>
+   <%= f.hidden_field :headhunter_id %>
+
+   <%= f.label :body, "Comentário:" %>
+   <%= f.text_area :bady %>
+
+   <div class="actions">
+    <%= f.submit 'Salvar', class: "btn btn-default btn-primary" %>
+   </div>
+  <% end %>

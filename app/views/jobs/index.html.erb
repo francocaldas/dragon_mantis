@@ -1,10 +1,16 @@
 <div class="container-fluid">
   <p class="h2">Minhas Vagas</p>
+  
   <% @jobs.each do |job| %>
-    <%= job.title %>
-    <%= link_to 'Editar', edit_job_path(job) %>
-    <p class="h4">Candidatos Inscritos</p>
-    <%= render job.subscriptions %>
+    <div class="card">
+      <div class="card-body">
+        <label class="h4"><%= job.title %></label>
+        <%= link_to 'Editar', edit_job_path(job) %>
+        <p class="h6">Candidatos Inscritos</p>
+          <%= render job.subscriptions %>
+      </div>
+    </div>
   <% end %>
+    
     
 </div>

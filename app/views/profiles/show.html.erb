@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <p class="h2">Perfil do candidato</p>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= @profile.social_name %>
+      </h4>
+      <br>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Nome:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Nome Social:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.social_name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Data de Nascimento:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.birth_date.strftime("%d/%m/%Y") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Formação:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.formation %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Descrição:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.description %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Experiência:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @profile.experience %>
+        </div>
+      </div>
+      <br>
+      
+    </div>
+    
+    <hr class="w-100">
+    
+    <div class="container-fluid">
+      <p class="h4">Comentários</p>
+    </div>
+    <%= render "comments/form", comment: @comment%>
+
+  </div>
+</div>

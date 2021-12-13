@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_191500) do
+ActiveRecord::Schema.define(version: 2021_12_10_112531) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.integer "profile_id", null: false
+    t.integer "headhunter_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["headhunter_id"], name: "index_comments_on_headhunter_id"
+    t.index ["profile_id"], name: "index_comments_on_profile_id"
+  end
 
   create_table "headhunters", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_191500) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "headhunter_id", null: false
+    t.boolean "closed"
     t.index ["headhunter_id"], name: "index_jobs_on_headhunter_id"
   end
 
@@ -73,6 +84,8 @@ ActiveRecord::Schema.define(version: 2021_12_08_191500) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "headhunters"
+  add_foreign_key "comments", "profiles"
   add_foreign_key "jobs", "headhunters"
   add_foreign_key "profiles", "users"
   add_foreign_key "subscriptions", "jobs"

@@ -1,4 +1,5 @@
-<p>
-  <%= subscription.user_id %>
-  <%= subscription.user_email %>
-</p>
+<spam>
+  <%= subscription.profile_name %>
+  <%= link_to 'Perfil', profile_path(subscription.user_id) %>
+</spam>
+<br>

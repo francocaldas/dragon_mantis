@@ -45,6 +45,14 @@
           <%= @jobs.location %>
         </div>
       </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-label"><b>Data Limite:</b></label>
+        
+        <div class="col-sm-10">
+          <%= @jobs.deadline.strftime('%d/%m/%Y') %>
+        </div>
+      </div>
       <br>
       
       <%= link_to 'Increver-se', job_enroll_path(@jobs, user_id: current_user.id), method: :post, class: "btn btn-primary" %>

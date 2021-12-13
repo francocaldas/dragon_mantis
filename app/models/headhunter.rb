@@ -6,4 +6,7 @@ class Headhunter < ApplicationRecord
 
   has_many :jobs
   accepts_nested_attributes_for :jobs
+
+  has_many :comments
+  has_many :profiles, :through => :comments
 end
