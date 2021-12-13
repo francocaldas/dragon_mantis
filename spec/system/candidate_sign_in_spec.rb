@@ -12,7 +12,7 @@ describe 'Candidate sign in' do
     end
     fill_in 'Email', with: 'candidato@teste.com'
     fill_in 'Password', with: '123456'
-    click_on 'Entar'
+    click_on 'Entrar'
     # Assert
     expect(current_path).to eq new_profile_path
     expect(page).to have_content('candidato@teste.com')

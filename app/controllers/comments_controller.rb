@@ -3,11 +3,14 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    # @comments = Comment.all
+    @profile = Profile.find_by(user_id: current_user.id)
+    @comments = @profile.comments.all
   end
 
   # GET /comments/1 or /comments/1.json
   def show
+    @comments = Comment.all
   end
 
   # GET /comments/new
@@ -21,16 +24,14 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
+    @headhunter = current_headhunter 
     @comment = Comment.new(comment_params)
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: "Comentário criado com sucesso." }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    @comment.headhunter_id = @headhunter.id
+    
+    if @comment.save
+      redirect_to request.referrer, notice: "Comentário criado com sucesso."
+    else
+      render :new
     end
   end
 
@@ -50,10 +51,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1 or /comments/1.json
   def destroy
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Comentário excluído com sucesso." }
-      format.json { head :no_content }
-    end
+    redirect_to request.referrer, notice: "Comentário excluído com sucesso." 
   end
 
   private

@@ -9,7 +9,7 @@ class JobsController < ApplicationController
   def create
     @headhunter = current_headhunter
     @job = @headhunter.jobs.create(job_params)
-    if  @job.save
+    if @job.save
       :new
       redirect_to jobs_path
     end
