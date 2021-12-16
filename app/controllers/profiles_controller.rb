@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_headhunter!, only: [:show]
+  before_action :authenticate_user!, except: [:index, :show, :bookmark]
+  before_action :authenticate_headhunter!, only: [:show, :bookmark]
   #before_action :check_profile_presence, only: [:new, :create]
 
   
@@ -39,6 +39,17 @@ class ProfilesController < ApplicationController
     @profile = Profile.find_by(user_id: params[:id])
     @comments = @profile.comments.all
     @comment = @profile.comments.build
+  end
+
+  def bookmark
+    if Favorite.exists?(profile_id: params[:profile_id], headhunter_id: params[:headhunter_id])
+      flash[:alert] = "Esse perfil já está nos seus favoritos."
+    else
+      @favorite = Favorite.new(profile_id: params[:profile_id], headhunter_id: params[:headhunter_id])
+      @favorite.save
+      flash[:notice] = "Perfil incluído nos seus favoritos."
+    end
+    redirect_to request.referrer
   end
 
   private

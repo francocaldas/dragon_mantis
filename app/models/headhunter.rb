@@ -9,4 +9,7 @@ class Headhunter < ApplicationRecord
 
   has_many :comments
   has_many :profiles, :through => :comments
+
+  has_many :favorites
+  has_many :profiles, :through => :favorites
 end

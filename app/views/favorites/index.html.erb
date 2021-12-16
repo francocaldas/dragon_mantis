@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <p class="h2">Meus favoritos</p>
+  
+  <div class="card">
+    <div class="card-body">
+      <% @favorites.each do |favorite| %>
+        <label class="h6"><%= favorite.profile_name %></label>
+        <%= link_to 'Perfil', profile_path(favorite.profile_id) %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+    
+    
+</div>

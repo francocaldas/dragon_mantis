@@ -17,7 +17,7 @@ describe 'Candidate sign in' do
     expect(current_path).to eq new_profile_path
     expect(page).to have_content('candidato@teste.com')
     expect(page).to have_link('Sair')
-    expect(page).not_to have_content('Login')
+    expect(page).not_to have_css('div.dropdown')
   end
 
   it 'should sign out' do
@@ -31,6 +31,7 @@ describe 'Candidate sign in' do
     expect(current_path).to eq root_path
     expect(page).not_to have_content('candidato@teste.com')
     expect(page).not_to have_link('Sair')
+
     expect(page).to have_content('Login')
   end
 end

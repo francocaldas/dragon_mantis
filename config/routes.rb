@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :jobs, only: [:new, :create, :index, :show, :edit, :update] do
     post :enroll
-    #resources :subscriptions
   end
-  resources :profiles, only: [:new, :create, :edit, :show, :update]
+  resources :profiles, only: [:new, :create, :edit, :show, :update] do
+    post :bookmark
+  end
   resources :comments
+  resources :favorites, only: [:index]
 end

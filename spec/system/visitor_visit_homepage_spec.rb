@@ -8,6 +8,7 @@ describe 'Visitor visit homepage' do
     visit root_path
 
     expect(page).to have_content('Dragon Mantis')
+    expect(page).to have_css('div.dropdown')
   end
 
   it 'and view all active jobs' do

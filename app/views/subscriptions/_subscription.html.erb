@@ -1,5 +1,9 @@
 <spam>
-  <%= subscription.profile_name %>
+  <% if Favorite.exists?(profile_id: subscription.profile_id, headhunter_id: current_headhunter.id) %>
+    <label class="text-success"><%= subscription.profile_name %></label>
+  <% else %>
+    <%= subscription.profile_name %>
+  <% end %>
   <%= link_to 'Perfil', profile_path(subscription.user_id) %>
 </spam>
 <br>

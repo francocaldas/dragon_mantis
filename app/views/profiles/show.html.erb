@@ -2,7 +2,7 @@
   <p class="h2">Perfil do candidato</p>
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">
+      <h4 class="card-title" >
         <%= @profile.social_name %>
       </h4>
       <br>
@@ -27,7 +27,9 @@
         <label class="col-sm-2 col-label"><b>Data de Nascimento:</b></label>
         
         <div class="col-sm-10">
-          <%= @profile.birth_date.strftime("%d/%m/%Y") %>
+          <% unless @profile.birth_date.blank? %>
+            <%= @profile.birth_date.strftime("%d/%m/%Y") %>
+          <% end %>
         </div>
       </div>
 
@@ -55,29 +57,27 @@
         </div>
       </div>
       <br>
-      
+
+      <%= link_to 'Favoritar', profile_bookmark_path(@profile, headhunter_id: current_headhunter.id), method: :post, class: "btn btn-primary" %>
     </div>
     
     <hr class="w-100">
     
     <div class="container-fluid">
       <p class="h4">Comentários</p>
-    </div>
 
-    <div class="col-md-12">
-    <br>
-    <% @comments.each do |comment| %>
-      <% if comment.headhunter_id == current_headhunter.id %>    
-        <div class="col-md-3">
-          <strong><%= comment.headhunter_id %></strong>
-          <br>
-          <p><%= comment.body %></p>
-          <p><%= link_to 'Deletar', comment_path(comment), method: :delete, data: { confirm: 'Tem certreza?' } %></p>
-        </div>
-      <% end %>
-    <% end %>
-    <%= render partial: 'comments/form', locals: { comment: @comment } %>
-  </div>
+      <div class="col-md-10">
+        <% @comments.each do |comment| %>
+          <% if comment.headhunter_id == current_headhunter.id %>   
+            <div class="md-3">
+              <p><%= comment.body %></p>
+              <p><%= link_to 'Deletar', comment_path(comment), method: :delete, data: { confirm: 'Tem certreza?' } %></p>
+            </div>
+          <% end %>
+        <% end %>
+        <%= render partial: 'comments/form', locals: { comment: @comment } %>
+      </div>
+    </div>
 
   </div>
 </div>

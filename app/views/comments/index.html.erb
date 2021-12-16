@@ -1,7 +1,10 @@
-<% @comments.each do |comment| %>
-  <div class="col-md-3">
-    <strong><%= comment.headhunter_id %></strong>
-    <br>
-    <p><%= comment.body %></p>
-  </div>
-<% end %>
+<div class="container-fluid">
+  <p class="h2">Meus Comentários</p>
+  <% @comments.each do |comment| %>
+    <div class="col-md-3">
+      <strong><%= comment.headhunter_id %></strong>
+      <br>
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+</div>
