@@ -2,8 +2,9 @@
   <p class="h2">Meus Comentários</p>
   <% @comments.each do |comment| %>
     <div class="col-md-3">
-      <strong><%= comment.headhunter_id %></strong>
+      <strong><%= comment.headhunter_email %></strong>
       <br>
+      <label class="text-muted">Data: <%= comment.updated_at.strftime("%d/%m/%Y %T") %> </label>
       <p><%= comment.body %></p>
     </div>
   <% end %>
