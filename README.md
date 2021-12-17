@@ -20,7 +20,7 @@ cd dragon_mantis
 bundle install
 # instale as dependências do Node
 yarn install
-# crie o banco de dados de deseonvolvimento e de testes
+# crie o banco de dados
 rails db:create
 # crie as tabelas 
 rails db:migrate
