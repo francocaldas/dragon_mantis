@@ -2,13 +2,14 @@
 O projeto consiste em criar uma plataforma Web, em Ruby on Rails, para headhunters e candidatos se relacionarem em torno de vagas de emprego. 
 
 O Dragon Mantis está sendo construído usando Ruby on Rails 6 no padrão MVC e Bootstrap 5.
-Ruby version 	3.0.2
-Rails version 	6.1.4.1
-Database 	SQLite3 
-Devise
-Capybara 
-factory_bot_rails 6.2
-rspec-rails 5.0.0 
+- Ruby version 	3.0.2
+- Rails version 	6.1.4.1
+- Database 	SQLite3 
+- Devise
+- Capybara 
+- factory_bot_rails 6.2
+- rspec-rails 5.0.0 
+
 Como rodar o projeto:
 
 # faça o clone do projeto
