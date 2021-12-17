@@ -14,7 +14,7 @@ Como rodar o projeto:
 # faça o clone do projeto
 git clone https://github.com/francocaldas/dragon_mantis.git
 # entre na pasta do projeto
-cd blogstrap
+cd dragon_mantis
 # instale as dependências do Ruby on Rails
 bundle install
 # instale as dependências do Node
